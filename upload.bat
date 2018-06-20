@@ -8,12 +8,12 @@ if not exist .git (
 :REDO
 echo What branch would you like to commit to?  Default branch name is master.  Leave blank for no change.  Also, you can add -b before the branch to create a new branch.  (i.e. -b bugfix)
 set /p branch=^>
-if "%branch%" eq "" goto nobranch
+if "%branch%" equ "" goto nobranch
 git checkout %branch%
 if %errorlevel% gtr 0 (
 	echo There was a problem.  Would you like to try again?
 	choice
-	if %errorlevel% eq 1 goto redo
+	if %errorlevel% equ 1 goto redo
 	echo Continuing on current branch.
 )
 :NOBRANCH
