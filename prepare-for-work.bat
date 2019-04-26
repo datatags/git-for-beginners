@@ -33,7 +33,13 @@ if %errorlevel% gtr 0 (
 	pause
 	exit /b 1
 ) else (
-	echo Success!
+	echo Moving all files to current directory...
+	move %repo%\* .
+	attrib -h %repo%\.git
+	for /d %%d in (%repo%\*) do move %%d .
+	attrib +h .git
+	rmdir %repo%
+	echo Done.
 	pause
 	exit /b
 )
